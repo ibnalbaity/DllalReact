@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types';
 import React, { memo, useEffect, useState } from 'react';
 import { Alert, FormHelperText, Grid, Typography } from '@mui/material';
+import useAuth from '../hooks/useAuth';
 
 const DllalHandleError = ({ errorData, textError }) => {
+    const { logout } = useAuth();
     const [englishMessage, setEnglishMessage] = useState('');
     const [message, setMessage] = useState('');
     const [dllalErrors, setDllalErrors] = useState([]);
     const [dllalError, setDllalError] = useState('');
 
-    console.log(textError);
     console.log(typeof textError);
     useEffect(() => {
         if (typeof errorData === 'object' && errorData?.error?.message) {
@@ -75,11 +76,20 @@ const DllalHandleError = ({ errorData, textError }) => {
                 case 'Email or Username are already taken':
                     setDllalError('تم التسجيل مسبقا بهذا الإيميل أو بالاسم.');
                     break;
+                case 'Forbidden':
+                    setDllalError('إجراء غير مسموح به.. يرجى تحديث الصفحة والمحاولة مرة أخرى.');
+                    break;
+                case 'Missing or invalid credentials':
+                    setDllalError('غير مسموح لك بتسجيل الدخول، حاول مرة أخرى');
+                    if (window.localStorage.getItem('serviceToken') !== undefined && window.localStorage.getItem('serviceToken') !== null) {
+                        logout();
+                    }
+                    break;
                 default:
                     setDllalError('');
             }
         }
-    }, [errorData?.error?.details, message]);
+    }, [errorData?.error?.details, logout, message]);
 
     let resultMessageError;
     let resultMessageErrors;

@@ -11,6 +11,7 @@ import accountReducer from 'store/accountReducer';
 // project imports
 import Loader from 'ui-component/Loader';
 import axios from 'utils/axios';
+import { openSnackbar } from '../store/slices/snackbar';
 
 // constant
 const initialState = {
@@ -62,15 +63,13 @@ export const JWTProvider = ({ children }) => {
                         }
                     });
                 } else {
-                    dispatch({
-                        type: LOGOUT
-                    });
+                    setSession(null);
+                    dispatch({ type: LOGOUT });
                 }
             } catch (err) {
                 console.error(err);
-                dispatch({
-                    type: LOGOUT
-                });
+                setSession(null);
+                dispatch({ type: LOGOUT });
             }
         };
 
@@ -97,21 +96,8 @@ export const JWTProvider = ({ children }) => {
             email,
             password
         });
-        let users = response.data;
 
-        if (window.localStorage.getItem('users') !== undefined && window.localStorage.getItem('users') !== null) {
-            const localUsers = window.localStorage.getItem('users');
-            users = [
-                ...JSON.parse(localUsers),
-                {
-                    username,
-                    email,
-                    password
-                }
-            ];
-        }
-
-        window.localStorage.setItem('users', JSON.stringify(users));
+        window.localStorage.setItem('user', JSON.stringify(response.data.user));
     };
 
     const logout = () => {

@@ -94,7 +94,7 @@ const AuthDllalRegister = ({ ...others }) => {
                 })}
                 onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
                     try {
-                        await register(/* values.name, */ values.email, values.password);
+                        await register(values.name, values.email, values.password);
                         if (scriptedRef.current) {
                             setStatus({ success: true });
                             setSubmitting(false);
