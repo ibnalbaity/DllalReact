@@ -7,6 +7,7 @@ import Loadable from 'ui-component/Loadable';
 
 // sample page routing
 const CategoriesPage = Loadable(lazy(() => import('views/dllal/category')));
+const AddDllal = Loadable(lazy(() => import('views/dllal/addDllal/AddDllal')));
 const CategoryDetail = Loadable(lazy(() => import('views/dllal/category/CategoryDetails')));
 
 // ==============================|| MAIN ROUTING ||============================== //
@@ -30,6 +31,10 @@ const MainRoutes = {
         {
             path: '/category/:name',
             element: <CategoryDetail />
+        },
+        {
+            path: '/add',
+            element: <AddDllal />
         }
     ]
 };

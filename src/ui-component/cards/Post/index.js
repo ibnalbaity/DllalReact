@@ -365,7 +365,7 @@ const Post = ({ commentAdd, handleCommentLikes, handlePostLikes, handleReplayLik
                         </Grid>
                     </Grid>
                 </Grid>
-                {/* add new comment */}
+                {/* addDllal new comment */}
                 <Collapse in={openComment} sx={{ width: '100%' }}>
                     {openComment && (
                         <Grid item xs={12} sx={{ pt: 2 }}>

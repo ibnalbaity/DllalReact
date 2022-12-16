@@ -18,7 +18,7 @@
         "@reduxjs/toolkit": "^1.8.5",
         "@sentry/react": "^7.23.0",
         "@sentry/tracing": "^7.23.0",
-        "@tabler/icons": "^1.92.0",
+        "@tabler/icons": "^1.117.0",
         "axios": "^0.27.2",
         "axios-mock-adapter": "^1.21.2",
         "csstype": "^3.1.0",

@@ -25,7 +25,7 @@ export const AWS_API = {
     appClientId: '3eau2osduslvb7vks3vsh9t7b0'
 };
 
-// basename: only at build time to set, and Don't add '/' at end off BASENAME for breadcrumbs, also Don't put only '/' use blank('') instead,
+// basename: only at build time to set, and Don't addDllal '/' at end off BASENAME for breadcrumbs, also Don't put only '/' use blank('') instead,
 // like '/berry-material-react/react/default'
 export const BASE_URL = 'http://localhost:1337';
 

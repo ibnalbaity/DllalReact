@@ -12,7 +12,7 @@ import SearchSection from './SearchSection';
 import MobileSection from './MobileSection';
 import ProfileSection from './ProfileSection';
 import LocalizationSection from './LocalizationSection';
-import MegaMenuSection from './MegaMenuSection';
+import AddSection from './AddSection';
 import NotificationSection from './NotificationSection';
 
 // assets
@@ -70,9 +70,9 @@ const Header = ({ handleDrawerToggle }) => {
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ flexGrow: 1 }} />
 
-            {/* mega-menu */}
+            {/* Add Dllal Section */}
             <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                <MegaMenuSection />
+                <AddSection />
             </Box>
 
             {/* live customization & localization */}
