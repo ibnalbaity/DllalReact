@@ -9,11 +9,8 @@ import LAYOUT_CONST from 'constant';
 import useConfig from 'hooks/useConfig';
 import LogoSection from '../LogoSection';
 import SearchSection from './SearchSection';
-import MobileSection from './MobileSection';
 import ProfileSection from './ProfileSection';
-import LocalizationSection from './LocalizationSection';
 import AddSection from './AddSection';
-import NotificationSection from './NotificationSection';
 
 // assets
 import { IconMenu2 } from '@tabler/icons';
@@ -70,24 +67,23 @@ const Header = ({ handleDrawerToggle }) => {
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ flexGrow: 1 }} />
 
-            {/* Add Dllal Section */}
-            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                <AddSection />
-            </Box>
-
             {/* live customization & localization */}
-            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+            {/* <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                 <LocalizationSection />
+            </Box> */}
+            {/* logo For Mobile */}
+            <Box component="span" sx={{ display: { xs: 'block', md: 'none' }, flexGrow: 2 }}>
+                <LogoSection />
             </Box>
-
             {/* notification & profile */}
-            <NotificationSection />
+            {/* <NotificationSection /> */}
+            <AddSection />
             <ProfileSection />
 
             {/* mobile header */}
-            <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
+            {/* <Box sx={{ display: { xs: 'block', sm: 'none' } }}>
                 <MobileSection />
-            </Box>
+            </Box> */}
         </>
     );
 };

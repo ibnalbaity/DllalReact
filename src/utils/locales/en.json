@@ -91,8 +91,8 @@
     "toggle-button": "Toggle Button",
     "treeview": "Treeview",
 
-    "pages": "Pages",
-    "pages-caption": "Prebuild Pages",
+    "pages": "صفحات",
+    "pages-caption": "صفحات مهمة",
     "authentication": "Authentication",
     "login": "Login",
     "register": "Register",
@@ -147,5 +147,8 @@
     "account-settings": "Account settings",
     "logout": "Logout",
 
-    "more-items": "More Items"
+    "more-items": "More Items",
+
+    "add": "إضافة إعلان",
+    "terms": "الشروط والأحكام"
 }

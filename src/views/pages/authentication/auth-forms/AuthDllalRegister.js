@@ -44,7 +44,7 @@ const AuthDllalRegister = ({ ...others }) => {
     const dispatch = useDispatch();
 
     const [showPassword, setShowPassword] = useState(false);
-    const [checked, setChecked] = useState(true);
+    const [checked, setChecked] = useState(false);
 
     const [strength, setStrength] = useState(0);
     const [level, setLevel] = useState();
@@ -72,13 +72,13 @@ const AuthDllalRegister = ({ ...others }) => {
 
     return (
         <>
-            <Grid container direction="column" justifyContent="center" spacing={2}>
+            {/* <Grid container direction="column" justifyContent="center" spacing={2}>
                 <Grid item xs={12} container alignItems="center" justifyContent="center">
                     <Box sx={{ mb: 2 }}>
                         <Typography variant="subtitle1">Sign up with Email address</Typography>
                     </Box>
                 </Grid>
-            </Grid>
+            </Grid> */}
 
             <Formik
                 initialValues={{
@@ -235,8 +235,8 @@ const AuthDllalRegister = ({ ...others }) => {
                                     }
                                     label={
                                         <Typography variant="subtitle1">
-                                            Agree with &nbsp;
-                                            <Typography variant="subtitle1" component={Link} to="#">
+                                            الموافقة على &nbsp;
+                                            <Typography variant="subtitle1" component={Link} to="/terms">
                                                 الشروط والأحكام.
                                             </Typography>
                                         </Typography>
@@ -249,7 +249,7 @@ const AuthDllalRegister = ({ ...others }) => {
                             <AnimateButton>
                                 <Button
                                     disableElevation
-                                    disabled={isSubmitting}
+                                    disabled={isSubmitting || !checked}
                                     fullWidth
                                     size="large"
                                     type="submit"

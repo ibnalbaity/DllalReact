@@ -8,7 +8,6 @@ import { Box, Drawer, Stack, useMediaQuery } from '@mui/material';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 // project imports
-import MenuCard from './MenuCard';
 import MenuList from '../MenuList';
 import LogoSection from '../LogoSection';
 import MiniDrawerStyled from './MiniDrawerStyled';
@@ -54,7 +53,6 @@ const Sidebar = () => {
                 }}
             >
                 <MenuList />
-                {layout === LAYOUT_CONST.VERTICAL_LAYOUT && drawerOpen && <MenuCard />}
                 {layout === LAYOUT_CONST.VERTICAL_LAYOUT && drawerOpen && (
                     <Stack direction="row" justifyContent="center" sx={{ mb: 2 }}>
                         <Chip

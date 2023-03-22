@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 // material-ui
-import { useTheme, styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { Avatar, Box, Card, Grid, InputAdornment, OutlinedInput, Popper } from '@mui/material';
 
 // third-party
@@ -12,8 +12,11 @@ import PopupState, { bindPopper, bindToggle } from 'material-ui-popup-state';
 import Transitions from 'ui-component/extended/Transitions';
 
 // assets
-import { IconAdjustmentsHorizontal, IconSearch, IconX } from '@tabler/icons';
+import { IconSearch, IconX } from '@tabler/icons';
 import { shouldForwardProp } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from '../../../../store';
+import { getDllalResults } from '../../../../store/slices/dllal';
 
 // styles
 const PopperStyle = styled(Popper, { shouldForwardProp })(({ theme }) => ({
@@ -60,13 +63,25 @@ const HeaderAvatarStyle = styled(Avatar, { shouldForwardProp })(({ theme }) => (
 
 const MobileSearch = ({ value, setValue, popupState }) => {
     const theme = useTheme();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     return (
         <OutlineInputStyle
             id="input-search-header"
             value={value}
-            onChange={(e) => setValue(e.target.value)}
-            placeholder="Search"
+            onChange={(e) => {
+                setValue(e.target.value);
+                if (e.target.value.length > 2) {
+                    dispatch(getDllalResults(e.target.value));
+                }
+                if (e.target.value.length) {
+                    navigate(`/search/${e.target.value}`);
+                } else {
+                    navigate(`/search`);
+                }
+            }}
+            placeholder="البحث"
             startAdornment={
                 <InputAdornment position="start">
                     <IconSearch stroke={1.5} size="16px" color={theme.palette.grey[500]} />
@@ -74,9 +89,6 @@ const MobileSearch = ({ value, setValue, popupState }) => {
             }
             endAdornment={
                 <InputAdornment position="end">
-                    <HeaderAvatarStyle variant="rounded">
-                        <IconAdjustmentsHorizontal stroke={1.5} size="20px" />
-                    </HeaderAvatarStyle>
                     <Box sx={{ ml: 2 }}>
                         <Avatar
                             variant="rounded"
@@ -113,6 +125,8 @@ MobileSearch.propTypes = {
 
 const SearchSection = () => {
     const theme = useTheme();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [value, setValue] = useState('');
 
     return (
@@ -158,19 +172,27 @@ const SearchSection = () => {
             <Box sx={{ display: { xs: 'none', md: 'block' } }}>
                 <OutlineInputStyle
                     id="input-search-header"
+                    onFocus={() => {
+                        if (value.length > 2) {
+                            navigate(`/search/${value}`);
+                        }
+                    }}
                     value={value}
-                    onChange={(e) => setValue(e.target.value)}
-                    placeholder="Search"
+                    onChange={(e) => {
+                        setValue(e.target.value);
+                        if (e.target.value.length > 2) {
+                            dispatch(getDllalResults(e.target.value));
+                        }
+                        if (e.target.value.length) {
+                            navigate(`/search/${e.target.value}`);
+                        } else {
+                            navigate(`/search`);
+                        }
+                    }}
+                    placeholder="البحث"
                     startAdornment={
                         <InputAdornment position="start">
                             <IconSearch stroke={1.5} size="16px" color={theme.palette.grey[500]} />
-                        </InputAdornment>
-                    }
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <HeaderAvatarStyle variant="rounded">
-                                <IconAdjustmentsHorizontal stroke={1.5} size="20px" />
-                            </HeaderAvatarStyle>
                         </InputAdornment>
                     }
                     aria-describedby="search-helper-text"

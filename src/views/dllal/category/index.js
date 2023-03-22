@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 // material-ui
 import { Grid, Typography } from '@mui/material';
 // redux
@@ -23,34 +23,29 @@ const Category = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    let result;
+    let resultCategories;
     if (loading) {
-        result = (
-            <Grid item>
+        resultCategories = (
+            <Grid item xs={12}>
                 <Loader />
-                <Typography>Loading</Typography>
+                <Typography>يتم التحميل يرجى الإنتظار...</Typography>
             </Grid>
         );
     } else if (error) {
-        result = (
-            <Grid item>
-                <Typography>Error</Typography>
+        resultCategories = (
+            <Grid item xs={12}>
+                <Typography>خطأ في تحميل الأقسام</Typography>
             </Grid>
         );
     } else if (categories && categories.length > 0) {
-        result = (
-            <Grid item xs={12} md={8}>
-                <Grid container spacing={gridSpacing}>
-                    <CategoryItems categories={categories} />
-                </Grid>
+        resultCategories = (
+            <Grid container alignItems="center" alignContent="center" spacing={gridSpacing}>
+                <CategoryItems categories={categories} />
             </Grid>
         );
     }
-    return (
-        <Grid container alignItems="center" justifyContent="center" spacing={gridSpacing}>
-            {result}
-        </Grid>
-    );
+
+    return resultCategories;
 };
 
-export default Category;
+export default memo(Category);

@@ -10,7 +10,6 @@ const DllalHandleError = ({ errorData, textError }) => {
     const [dllalErrors, setDllalErrors] = useState([]);
     const [dllalError, setDllalError] = useState('');
 
-    console.log(typeof textError);
     useEffect(() => {
         if (typeof errorData === 'object' && errorData?.error?.message) {
             setMessage(errorData?.error?.message);
@@ -32,7 +31,6 @@ const DllalHandleError = ({ errorData, textError }) => {
     useEffect(() => {
         if (errorData?.message?.length > 0) {
             errorData.message.forEach((item) => {
-                console.log(item);
                 item.messages.forEach((message) => {
                     setMessage(message.message);
                 });
@@ -78,6 +76,12 @@ const DllalHandleError = ({ errorData, textError }) => {
                     break;
                 case 'Forbidden':
                     setDllalError('إجراء غير مسموح به.. يرجى تحديث الصفحة والمحاولة مرة أخرى.');
+                    break;
+                case 'Incorrect code provided':
+                    setDllalError('لم تنجح عملية التحقق، ربما إنتهت صلاحية الرابط.');
+                    break;
+                case 'Your account email is not confirmed':
+                    setDllalError('حسابك غير مفعل، يرجى الضغط على رابط التفعيل المرسل إلى إيميلك.');
                     break;
                 case 'Missing or invalid credentials':
                     setDllalError('غير مسموح لك بتسجيل الدخول، حاول مرة أخرى');

@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 
 // third party
+import 'moment/locale/ar';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import * as Sentry from '@sentry/react';
@@ -16,9 +17,10 @@ import { ConfigProvider } from 'contexts/ConfigContext';
 
 // style + assets
 import 'assets/scss/style.scss';
+import 'photoswipe/dist/photoswipe.css';
 
 // ==============================|| REACT DOM RENDER  ||============================== //
-
+/*
 Sentry.init({
     dsn: 'https://502ba6ea99ec4cfeb45836caa2d3e791@o1074883.ingest.sentry.io/4504277252702208',
     integrations: [new BrowserTracing()],
@@ -28,6 +30,20 @@ Sentry.init({
     // We recommend adjusting this value in production
     tracesSampleRate: 1.0
 });
+
+Sentry.init({
+    dsn: 'https://502ba6ea99ec4cfeb45836caa2d3e791@o1074883.ingest.sentry.io/4504277252702208',
+
+    // This sets the sample rate to be 10%. You may want this to be 100% while
+    // in development and sample at a lower rate in production
+    replaysSessionSampleRate: 0.1,
+    // If the entire session is not sampled, use the below sample rate to sample
+    // sessions when an error occurs.
+    replaysOnErrorSampleRate: 1.0,
+
+    integrations: [new Sentry.Replay()]
+});
+*/
 
 const container = document.getElementById('root');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript

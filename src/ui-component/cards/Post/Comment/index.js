@@ -281,7 +281,7 @@ const Comment = ({ comment, handleCommentLikes, handleReplayLikes, postId, reply
                 </Grid>
             )}
             {repliesResult}
-            {/* comment - addDllal new replay */}
+            {/* comment - dllal new replay */}
             <Collapse in={openReply} sx={{ width: '100%' }}>
                 {openReply && (
                     <Grid item xs={12} sx={{ pl: { xs: 1, sm: 3 }, pt: 3 }}>

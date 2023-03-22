@@ -12,6 +12,7 @@ import accountReducer from 'store/accountReducer';
 import Loader from 'ui-component/Loader';
 import axios from 'utils/axios';
 import { openSnackbar } from '../store/slices/snackbar';
+import { useDispatch } from '../store';
 
 // constant
 const initialState = {
@@ -45,6 +46,7 @@ const setSession = (serviceToken) => {
 const JWTContext = createContext(null);
 
 export const JWTProvider = ({ children }) => {
+    const dispatchMessage = useDispatch();
     const [state, dispatch] = useReducer(accountReducer, initialState);
 
     useEffect(() => {
@@ -54,12 +56,12 @@ export const JWTProvider = ({ children }) => {
                 if (serviceToken && verifyToken(serviceToken)) {
                     setSession(serviceToken);
                     const response = await axios.get('/api/users/me');
-                    const { user } = response.data;
+                    const { data } = response;
                     dispatch({
                         type: LOGIN,
                         payload: {
                             isLoggedIn: true,
-                            user
+                            user: data
                         }
                     });
                 } else {
@@ -105,16 +107,108 @@ export const JWTProvider = ({ children }) => {
         dispatch({ type: LOGOUT });
     };
 
-    const resetPassword = (email) => console.log(email);
+    const forgotPassword = async (email) => {
+        const response = await axios.post('/api/auth/forgot-password', {
+            email
+        });
+        console.log(response);
+        if (response.status === 2000) {
+            dispatchMessage(
+                openSnackbar({
+                    open: true,
+                    message: 'تم إرسال رابط استعادة كلمة المرور على إيميلك.',
+                    variant: 'alert',
+                    alert: {
+                        color: 'success'
+                    },
+                    close: false
+                })
+            );
+        }
+    };
+
+    const resetPassword = async (code, password, passwordConfirmation) => {
+        const response = await axios.post('/api/auth/reset-password', {
+            code,
+            password,
+            passwordConfirmation
+        });
+
+        if (response?.status === 200) {
+            dispatchMessage(
+                openSnackbar({
+                    open: true,
+                    message: 'تم تغيير كلمة المرور بنجاح.',
+                    variant: 'alert',
+                    alert: {
+                        color: 'success'
+                    },
+                    close: false
+                })
+            );
+        } else if (response === undefined) {
+            dispatchMessage(
+                openSnackbar({
+                    open: true,
+                    message: 'خطأ في تغيير كلمة المرور',
+                    variant: 'alert',
+                    alert: {
+                        color: 'error'
+                    },
+                    close: false
+                })
+            );
+        } else {
+            dispatchMessage(
+                openSnackbar({
+                    open: true,
+                    message: 'خطأ في تغيير كلمة المرور',
+                    variant: 'alert',
+                    alert: {
+                        color: 'error'
+                    },
+                    close: false
+                })
+            );
+        }
+    };
 
     const updateProfile = () => {};
+
+    const checkLoggedIn = async () => {
+        try {
+            const serviceToken = window.localStorage.getItem('serviceToken');
+            if (serviceToken && verifyToken(serviceToken)) {
+                setSession(serviceToken);
+                const response = await axios.get('/api/users/me');
+
+                const { data } = response;
+                dispatch({
+                    type: LOGIN,
+                    payload: {
+                        isLoggedIn: true,
+                        user: data
+                    }
+                });
+            } else {
+                setSession(null);
+                dispatch({ type: LOGOUT });
+            }
+        } catch (err) {
+            console.error(err);
+            setSession(null);
+            dispatch({ type: LOGOUT });
+        }
+    };
 
     if (state.isInitialized !== undefined && !state.isInitialized) {
         return <Loader />;
     }
 
     return (
-        <JWTContext.Provider value={{ ...state, login, logout, register, resetPassword, updateProfile }}>{children}</JWTContext.Provider>
+        <JWTContext.Provider value={{ ...state, login, logout, register, forgotPassword, resetPassword, updateProfile, checkLoggedIn }}>
+            {children}
+        </JWTContext.Provider>
     );
 };
 

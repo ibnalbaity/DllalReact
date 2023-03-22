@@ -9,6 +9,7 @@ const MaintenanceError = Loadable(lazy(() => import('views/pages/maintenance/Err
 const MaintenanceComingSoon1 = Loadable(lazy(() => import('views/pages/maintenance/ComingSoon/ComingSoon1')));
 const MaintenanceComingSoon2 = Loadable(lazy(() => import('views/pages/maintenance/ComingSoon/ComingSoon2')));
 const MaintenanceUnderConstruction = Loadable(lazy(() => import('views/pages/maintenance/UnderConstruction')));
+const Terms = Loadable(lazy(() => import('views/dllal/terms')));
 
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
 
@@ -31,6 +32,10 @@ const AuthenticationRoutes = {
         {
             path: '/pages/under-construction',
             element: <MaintenanceUnderConstruction />
+        },
+        {
+            path: '/terms',
+            element: <Terms />
         }
     ]
 };

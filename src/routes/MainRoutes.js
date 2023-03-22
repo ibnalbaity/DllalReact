@@ -6,10 +6,9 @@ import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 
 // sample page routing
-const CategoriesPage = Loadable(lazy(() => import('views/dllal/category')));
-const AddDllal = Loadable(lazy(() => import('views/dllal/addDllal/AddDllal')));
-const CategoryDetail = Loadable(lazy(() => import('views/dllal/category/CategoryDetails')));
-
+const UsersPage = Loadable(lazy(() => import('views/dllal/user')));
+const AddDllal = Loadable(lazy(() => import('views/dllal/addDllal')));
+const EditDllal = Loadable(lazy(() => import('views/dllal/editDllal')));
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -21,20 +20,20 @@ const MainRoutes = {
     ),
     children: [
         {
-            path: '/',
-            element: <CategoriesPage />
+            path: '/user',
+            element: <UsersPage />
         },
         {
-            path: '/sample-page',
-            element: <CategoriesPage />
-        },
-        {
-            path: '/category/:name',
-            element: <CategoryDetail />
+            path: '/user/:id',
+            element: <UsersPage />
         },
         {
             path: '/add',
             element: <AddDllal />
+        },
+        {
+            path: '/edit/:id',
+            element: <EditDllal />
         }
     ]
 };

@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Avatar, Button, Card, Grid, IconButton, ListItemIcon, Menu, MenuItem, Typography, Tooltip } from '@mui/material';
+import { Avatar, Button, Card, Grid, IconButton, ListItemIcon, Menu, MenuItem, Tooltip, Typography } from '@mui/material';
 
 // project imports
 import { gridSpacing } from 'store/constant';

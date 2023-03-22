@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     action: false,
     open: false,
+    autoHideDuration: null,
     message: 'Note archived',
     anchorOrigin: {
         vertical: 'bottom',
@@ -25,10 +26,11 @@ const snackbar = createSlice({
     initialState,
     reducers: {
         openSnackbar(state, action) {
-            const { open, message, anchorOrigin, variant, alert, transition, close, actionButton } = action.payload;
+            const { open, autoHideDuration, message, anchorOrigin, variant, alert, transition, close, actionButton } = action.payload;
 
             state.action = !state.action;
             state.open = open || initialState.open;
+            state.autoHideDuration = autoHideDuration || initialState.autoHideDuration;
             state.message = message || initialState.message;
             state.anchorOrigin = anchorOrigin || initialState.anchorOrigin;
             state.variant = variant || initialState.variant;

@@ -160,7 +160,7 @@ const MainLayout = () => {
 
             {/* main content */}
             <Main theme={theme} open={drawerOpen} layout={layout}>
-                <Container maxWidth={container ? 'lg' : false}>
+                <Container disableGutters={matchDownMd} maxWidth={container ? 'lg' : false}>
                     {/* breadcrumb */}
                     <Breadcrumbs separator={IconChevronRight} navigation={navigation} icon title rightAlign />
                     <Outlet />

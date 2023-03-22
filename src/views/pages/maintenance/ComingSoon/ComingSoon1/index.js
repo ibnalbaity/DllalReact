@@ -1,7 +1,7 @@
 import React from 'react';
 
 // material-ui
-import { useTheme, styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { Avatar, ButtonBase, Card, CardContent, CardMedia, Grid, Link, Typography } from '@mui/material';
 
 // third-party

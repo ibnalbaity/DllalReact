@@ -1,23 +1,9 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import {
-    Box,
-    Button,
-    Checkbox,
-    FormControl,
-    FormControlLabel,
-    FormHelperText,
-    Grid,
-    IconButton,
-    InputAdornment,
-    InputLabel,
-    OutlinedInput,
-    Typography
-} from '@mui/material';
+import { Box, FormControl, FormHelperText, Grid, IconButton, InputAdornment, InputLabel, OutlinedInput, Typography } from '@mui/material';
 
 // third party
 import * as Yup from 'yup';
@@ -32,16 +18,15 @@ import AnimateButton from 'ui-component/extended/AnimateButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import DllalHandleError from '../../../../utils/DllalHandleError';
+import { LoadingButton } from '@mui/lab';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
-const AuthDllalLogin = ({ loginProp, ...others }) => {
+const AuthDllalLogin = ({ ...others }) => {
     const theme = useTheme();
 
     const { login } = useAuth();
     const scriptedRef = useScriptRef();
-
-    const [checked, setChecked] = useState(true);
 
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => {
@@ -57,8 +42,8 @@ const AuthDllalLogin = ({ loginProp, ...others }) => {
     return (
         <Formik
             initialValues={{
-                email: 'info@codedthemes.com',
-                password: '123456',
+                email: '',
+                password: '',
                 submit: null
             }}
             validationSchema={Yup.object().shape({
@@ -75,7 +60,6 @@ const AuthDllalLogin = ({ loginProp, ...others }) => {
                     }
                 } catch (err) {
                     setError(err);
-                    console.log(err);
                     if (scriptedRef.current) {
                         setStatus({ success: false });
                         setErrors({ submit: err?.error?.message || err });
@@ -87,7 +71,7 @@ const AuthDllalLogin = ({ loginProp, ...others }) => {
             {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                 <form noValidate onSubmit={handleSubmit} {...others}>
                     <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
-                        <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
+                        <InputLabel htmlFor="outlined-adornment-email-login">البريد الإلكتروني</InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-email-login"
                             type="email"
@@ -105,7 +89,7 @@ const AuthDllalLogin = ({ loginProp, ...others }) => {
                     </FormControl>
 
                     <FormControl fullWidth error={Boolean(touched.password && errors.password)} sx={{ ...theme.typography.customInput }}>
-                        <InputLabel htmlFor="outlined-adornment-password-login">Password</InputLabel>
+                        <InputLabel htmlFor="outlined-adornment-password-login">كلمة المرور</InputLabel>
                         <OutlinedInput
                             id="outlined-adornment-password-login"
                             type={showPassword ? 'text' : 'password'}
@@ -137,7 +121,7 @@ const AuthDllalLogin = ({ loginProp, ...others }) => {
                     </FormControl>
 
                     <Grid container alignItems="center" justifyContent="space-between">
-                        <Grid item>
+                        {/* <Grid item>
                             <FormControlLabel
                                 control={
                                     <Checkbox
@@ -149,20 +133,10 @@ const AuthDllalLogin = ({ loginProp, ...others }) => {
                                 }
                                 label="Keep me logged in"
                             />
-                        </Grid>
+                        </Grid> */}
                         <Grid item>
-                            <Typography
-                                variant="subtitle1"
-                                component={Link}
-                                to={
-                                    loginProp
-                                        ? `/pages/forgot-password/forgot-password${loginProp}`
-                                        : '/pages/forgot-password/forgot-password3'
-                                }
-                                color="secondary"
-                                sx={{ textDecoration: 'none' }}
-                            >
-                                Forgot Password?
+                            <Typography variant="subtitle1" component={Link} to="/forgot" color="secondary" sx={{ textDecoration: 'none' }}>
+                                هل نسيت كلمة المرور؟
                             </Typography>
                         </Grid>
                     </Grid>
@@ -170,19 +144,23 @@ const AuthDllalLogin = ({ loginProp, ...others }) => {
                     {errors.submit && <DllalHandleError errorData={error} textError={errors} />}
                     <Box sx={{ mt: 2 }}>
                         <AnimateButton>
-                            <Button color="secondary" disabled={isSubmitting} fullWidth size="large" type="submit" variant="contained">
-                                Sign In
-                            </Button>
+                            <LoadingButton
+                                color="secondary"
+                                size="large"
+                                fullWidth
+                                type="submit"
+                                loading={isSubmitting}
+                                loadingIndicator="جاري تسجيل دخولك..."
+                                variant="contained"
+                            >
+                                <span>تسجيل الدخول</span>
+                            </LoadingButton>
                         </AnimateButton>
                     </Box>
                 </form>
             )}
         </Formik>
     );
-};
-
-AuthDllalLogin.propTypes = {
-    loginProp: PropTypes.number
 };
 
 export default AuthDllalLogin;

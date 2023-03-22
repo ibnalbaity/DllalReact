@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 // material-ui
-import { useTheme, styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { Button, Card, CardContent, CardMedia, Chip, Grid, Typography } from '@mui/material';
 
 // project imports

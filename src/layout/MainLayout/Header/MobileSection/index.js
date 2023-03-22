@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { AppBar, Box, IconButton, ClickAwayListener, Grid, Paper, Popper, Toolbar, useMediaQuery } from '@mui/material';
+import { AppBar, Box, ClickAwayListener, Grid, IconButton, Paper, Popper, Toolbar, useMediaQuery } from '@mui/material';
 
 // project imports
 import LocalizationSection from '../LocalizationSection';

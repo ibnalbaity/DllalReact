@@ -11,6 +11,7 @@ import AuthDllalLogin from './auth-forms/AuthDllalLogin';
 import Logo from 'ui-component/Logo';
 import AuthFooter from 'ui-component/cards/AuthFooter';
 import useAuth from 'hooks/useAuth';
+import { DASHBOARD_PATH } from '../../../config';
 
 // assets
 
@@ -30,7 +31,7 @@ const Login = () => {
                             <AuthCardWrapper>
                                 <Grid container spacing={2} alignItems="center" justifyContent="center">
                                     <Grid item sx={{ mb: 3 }}>
-                                        <Link to="#">
+                                        <Link component={Link} to={DASHBOARD_PATH}>
                                             <Logo />
                                         </Link>
                                     </Grid>
@@ -48,14 +49,14 @@ const Login = () => {
                                                         gutterBottom
                                                         variant={matchDownSM ? 'h3' : 'h2'}
                                                     >
-                                                        Hi, Welcome Back
+                                                        مرحبا بك في دلّال
                                                     </Typography>
                                                     <Typography
                                                         variant="caption"
                                                         fontSize="16px"
                                                         textAlign={matchDownSM ? 'center' : 'inherit'}
                                                     >
-                                                        Enter your credentials to continue
+                                                        سجل الدخول لإضافة إعلاناتك أو تصفحها.
                                                     </Typography>
                                                 </Stack>
                                             </Grid>
@@ -75,7 +76,7 @@ const Login = () => {
                                                 variant="subtitle1"
                                                 sx={{ textDecoration: 'none' }}
                                             >
-                                                Don&apos;t have an account?
+                                                ليس لديك حساب؟ إضغط لتسجيل حساب جديد.
                                             </Typography>
                                         </Grid>
                                     </Grid>

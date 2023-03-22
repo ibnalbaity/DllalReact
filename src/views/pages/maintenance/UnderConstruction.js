@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 // material-ui
-import { useTheme, styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { Button, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 
 // project imports

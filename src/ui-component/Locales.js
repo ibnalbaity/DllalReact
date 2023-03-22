@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // third-party
 import { IntlProvider } from 'react-intl';

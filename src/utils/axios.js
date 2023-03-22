@@ -6,7 +6,10 @@ import axios from 'axios';
 import { BASE_URL } from '../config';
 
 const axiosServices = axios.create({
-    baseURL: BASE_URL
+    baseURL: BASE_URL,
+    headers: {
+        'Content-type': 'application/json'
+    }
 });
 
 // interceptor for http

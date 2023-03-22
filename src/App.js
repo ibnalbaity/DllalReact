@@ -12,6 +12,7 @@ import ThemeCustomization from 'themes';
 // import { FirebaseProvider as AuthProvider } from 'contexts/FirebaseContext';
 // import { AWSCognitoProvider as AuthProvider } from 'contexts/AWSCognitoContext';
 import { JWTProvider as AuthProvider } from 'contexts/JWTContext';
+import CheckIsOnline from './utils/CheckIsOnline';
 // import { Auth0Provider as AuthProvider } from 'contexts/Auth0Context';
 
 // ==============================|| APP ||============================== //
@@ -26,6 +27,7 @@ const App = () => (
                         <>
                             <Routes />
                             <Snackbar />
+                            <CheckIsOnline />
                         </>
                     </AuthProvider>
                 </NavigationScroll>

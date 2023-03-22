@@ -11,6 +11,7 @@ import Logo from 'ui-component/Logo';
 import AuthDllalRegister from './auth-forms/AuthDllalRegister';
 import AuthFooter from 'ui-component/cards/AuthFooter';
 import useAuth from 'hooks/useAuth';
+import { DASHBOARD_PATH } from '../../../config';
 
 // assets
 
@@ -30,7 +31,7 @@ const Register = () => {
                             <AuthCardWrapper>
                                 <Grid container spacing={2} alignItems="center" justifyContent="center">
                                     <Grid item sx={{ mb: 3 }}>
-                                        <Link to="#">
+                                        <Link component={Link} to={DASHBOARD_PATH}>
                                             <Logo />
                                         </Link>
                                     </Grid>
@@ -48,14 +49,14 @@ const Register = () => {
                                                         gutterBottom
                                                         variant={matchDownSM ? 'h3' : 'h2'}
                                                     >
-                                                        Sign up
+                                                        تسجيل حساب جديد
                                                     </Typography>
                                                     <Typography
                                                         variant="caption"
                                                         fontSize="16px"
                                                         textAlign={matchDownSM ? 'center' : 'inherit'}
                                                     >
-                                                        Enter your credentials to continue
+                                                        يرجى كتابة بياناتك أدناه لتسجيل حسابك وإضافة إعلاناتك.
                                                     </Typography>
                                                 </Stack>
                                             </Grid>
@@ -75,7 +76,7 @@ const Register = () => {
                                                 variant="subtitle1"
                                                 sx={{ textDecoration: 'none' }}
                                             >
-                                                Already have an account?
+                                                هل يوجد لديك حساب مسجل؟ إضط هنا لتسجيل الدخول.
                                             </Typography>
                                         </Grid>
                                     </Grid>

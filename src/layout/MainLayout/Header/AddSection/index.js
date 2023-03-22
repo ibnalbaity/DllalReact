@@ -1,12 +1,11 @@
 import { useRef } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // material-ui
-import { styled } from '@mui/material/styles';
-import { Avatar } from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
+import { Avatar, Box } from '@mui/material';
 
 // project imports
-
 // assets
 import { IconSquareRoundedPlus } from '@tabler/icons';
 
@@ -24,10 +23,10 @@ const HeaderAvatarStyle = styled(Avatar)(({ theme }) => ({
 // ==============================|| SEARCH INPUT - MEGA MENu||============================== //
 
 const AddSection = () => {
-    const anchorRef = useRef(null);
+    const theme = useTheme();
     const location = useLocation();
     const navigate = useNavigate();
-
+    const anchorRef = useRef(null);
     const handleToggle = () => {
         if (location.pathname !== '/add') {
             navigate('/add');
@@ -35,11 +34,19 @@ const AddSection = () => {
     };
 
     return (
-        <>
+        <Box
+            sx={{
+                ml: 2,
+                mr: 3,
+                [theme.breakpoints.down('md')]: {
+                    mr: 2
+                }
+            }}
+        >
             <HeaderAvatarStyle variant="rounded" ref={anchorRef} onClick={handleToggle}>
                 <IconSquareRoundedPlus stroke={1.5} size="20px" />
             </HeaderAvatarStyle>
-        </>
+        </Box>
     );
 };
 

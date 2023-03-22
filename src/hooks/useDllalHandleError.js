@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 // ==============================|| CONFIG - LOCAL STORAGE ||============================== //
 
@@ -61,6 +61,10 @@ const useDllalHandleError = (errorData) => {
                     break;
                 case 'Method Not Allowed':
                     setDllalError('قيمة غير موجودة، يرجى التواصل مع إدارة الموقع.');
+                    setColor('info');
+                    break;
+                case 'treatyApproval must be a `boolean` type, but the final value was: `null`.':
+                    setDllalError('يجب الموافقة على المعاهدة.');
                     setColor('info');
                     break;
                 case 'Wrong Services':

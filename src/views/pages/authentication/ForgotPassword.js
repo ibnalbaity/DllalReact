@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -10,14 +10,15 @@ import AuthCardWrapper from '../AuthCardWrapper';
 import Logo from 'ui-component/Logo';
 import AuthForgotPassword from './auth-forms/AuthForgotPassword';
 import AuthFooter from 'ui-component/cards/AuthFooter';
-import useAuth from 'hooks/useAuth';
+import AuthResetPassword from './auth-forms/AuthResetPassword';
 
 // ============================|| AUTH3 - FORGOT PASSWORD ||============================ //
 
 const ForgotPassword = () => {
     const theme = useTheme();
-    const { isLoggedIn } = useAuth();
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
+    const [searchParams] = useSearchParams();
+    const code = searchParams.get('code');
 
     return (
         <AuthWrapper1>
@@ -40,31 +41,28 @@ const ForgotPassword = () => {
                                                     gutterBottom
                                                     variant={matchDownSM ? 'h3' : 'h2'}
                                                 >
-                                                    Forgot password?
+                                                    {code ? 'إستعادة كلمة المرور' : 'هل نسيت كلمة المرور؟'}
                                                 </Typography>
                                             </Grid>
                                             <Grid item xs={12}>
                                                 <Typography variant="caption" fontSize="16px" textAlign="center">
-                                                    Enter your email address below and we&apos;ll send you password reset OTP.
+                                                    {code
+                                                        ? 'يرجى كتابة كلمة المرور وتأكيدها أدناه'
+                                                        : 'يرجى كتابة بريدك الإلكتروني أدناه وسيتم إرسال رابط إستعادة كلمة المرور.'}
                                                 </Typography>
                                             </Grid>
                                         </Grid>
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <AuthForgotPassword />
+                                        {code ? <AuthResetPassword code={code} /> : <AuthForgotPassword />}
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Divider />
                                     </Grid>
                                     <Grid item xs={12}>
                                         <Grid item container direction="column" alignItems="center" xs={12}>
-                                            <Typography
-                                                component={Link}
-                                                to={isLoggedIn ? '/pages/login/login3' : '/login'}
-                                                variant="subtitle1"
-                                                sx={{ textDecoration: 'none' }}
-                                            >
-                                                Already have an account?
+                                            <Typography component={Link} to="/login" variant="subtitle1" sx={{ textDecoration: 'none' }}>
+                                                هل يوجد لديك حساب مسجل؟ إضط هنا لتسجيل الدخول.
                                             </Typography>
                                         </Grid>
                                     </Grid>

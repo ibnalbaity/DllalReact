@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'store';
 
 // material-ui
-import { useTheme, styled } from '@mui/material/styles';
-import { Fab, Badge, IconButton } from '@mui/material';
+import { styled, useTheme } from '@mui/material/styles';
+import { Badge, Fab, IconButton } from '@mui/material';
 
 // assets
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
