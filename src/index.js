@@ -20,7 +20,6 @@ import 'assets/scss/style.scss';
 import 'photoswipe/dist/photoswipe.css';
 
 // ==============================|| REACT DOM RENDER  ||============================== //
-/*
 Sentry.init({
     dsn: 'https://502ba6ea99ec4cfeb45836caa2d3e791@o1074883.ingest.sentry.io/4504277252702208',
     integrations: [new BrowserTracing()],
@@ -43,7 +42,6 @@ Sentry.init({
 
     integrations: [new Sentry.Replay()]
 });
-*/
 
 const container = document.getElementById('root');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript

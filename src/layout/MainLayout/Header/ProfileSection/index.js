@@ -29,10 +29,9 @@ import Transitions from 'ui-component/extended/Transitions';
 import useAuth from 'hooks/useAuth';
 
 // assets
-import { IconLogout, IconSettings, IconUser, IconLogin } from '@tabler/icons';
+import { IconLogin, IconLogout, IconSettings, IconUser } from '@tabler/icons';
 import useConfig from 'hooks/useConfig';
 import avatar from 'assets/images/dllalLogo.svg';
-import { DASHBOARD_PATH } from '../../../../config';
 
 // ==============================|| PROFILE MENU ||============================== //
 

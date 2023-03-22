@@ -27,7 +27,7 @@ export const AWS_API = {
 
 // basename: only at build time to set, and Don't dllal '/' at end off BASENAME for breadcrumbs, also Don't put only '/' use blank('') instead,
 // like '/berry-material-react/react/default'
-export const BASE_URL = 'http://localhost:1337';
+export const BASE_URL = 'https://apis.dllal.net';
 export const BASE_SITE = 'https://dllal.net';
 
 export const BASE_PATH = '';

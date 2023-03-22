@@ -22,7 +22,6 @@ import AnimateButton from '../../../ui-component/extended/AnimateButton';
 import { getGearTypes } from '../../../store/slices/gearType';
 import SendIcon from '@mui/icons-material/Send';
 import HandleError from '../../../utils/HandleError';
-import { openSnackbar } from '../../../store/slices/snackbar';
 import TextForm from '../addDllal/TextForm';
 import AutoCompleteForm from '../addDllal/AutoCompleteForm';
 import UploadImage from '../addDllal/UploadImage';

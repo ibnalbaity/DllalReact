@@ -19,7 +19,6 @@ import UserName from '../../views/component/UserName';
 import City from '../../views/component/City';
 import Categories from '../../views/component/Categories';
 import avatar from 'assets/images/dllalLogo.svg';
-import ReactMarkdown from 'react-markdown';
 
 // ==============================|| SOCIAL PROFILE - GALLERY CARD ||============================== //
 

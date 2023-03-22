@@ -6,14 +6,14 @@ import { Divider, Grid, Stack, Tooltip } from '@mui/material';
 // third-party
 import ReactMarkdown from 'react-markdown';
 import {
-    FacebookShareButton,
     FacebookIcon,
-    TelegramShareButton,
+    FacebookShareButton,
     TelegramIcon,
-    TwitterShareButton,
+    TelegramShareButton,
     TwitterIcon,
-    WhatsappShareButton,
-    WhatsappIcon
+    TwitterShareButton,
+    WhatsappIcon,
+    WhatsappShareButton
 } from 'react-share';
 import { useLocation } from 'react-router-dom';
 import { BASE_SITE } from '../../../config';
