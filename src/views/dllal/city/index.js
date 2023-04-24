@@ -1,25 +1,193 @@
 import { memo, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Grid, Paper, Typography } from '@mui/material';
-import { useSelector } from '../../../store';
+import { Autocomplete, Grid, Paper, TextField, Typography } from '@mui/material';
+import { useDispatch, useSelector } from '../../../store';
 import useConfig from '../../../hooks/useConfig';
-import AutocompleteFilter from '../../component/AutocompleteFilter';
+import CircularProgress from '@mui/material/CircularProgress';
+import { getGvernorates } from '../../../store/slices/gvernorate';
+import { filterCities } from '../../../store/slices/city';
+import { useNavigate } from 'react-router-dom';
 
 const City = () => {
-    const location = useLocation();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [valueGve, setValueGve] = useState(null);
+    const [valueCity, setValueCity] = useState(null);
+    const [openGve, setOpenGve] = useState(false);
+    const [openCity, setOpenCity] = useState(false);
+    const [isChangeGve, setIsChangeGve] = useState(false);
 
-    const { city, onChangeCity } = useConfig();
-    const [defaultValue, setDefaultValue] = useState(city);
-    const lastSegment = location.pathname.split('/').pop();
-    // fetch cities data
-    const { cities, loading, error } = useSelector((state) => state.city);
+    const { onChangeCity, city, onChangeGvernorate, gvernorate } = useConfig();
+
+    const { cities, loading: LoadingCity, error } = useSelector((state) => state.city);
+    const { gvernorates, loading: loadingGve, error: errorGve } = useSelector((state) => state.gvernorate);
+
+    const getCities = (gveID) => dispatch(filterCities(`filters[gvernorate][id][$eq]=${gveID}`));
 
     useEffect(() => {
-        if (city && lastSegment !== city?.attributes?.name) {
-            setDefaultValue(city);
+        if (gvernorate && valueGve === null) {
+            setValueGve(gvernorate);
         }
-    }, [city, lastSegment]);
+    }, [gvernorate, valueGve]);
 
+    useEffect(() => {
+        if (isChangeGve) {
+            onChangeCity(null);
+            setValueCity(null);
+            setIsChangeGve(false);
+        }
+    }, [isChangeGve, onChangeCity]);
+
+    useEffect(() => {
+        if (city && valueCity === null) {
+            setValueCity(city);
+        }
+    }, [city, valueCity]);
+
+    const handleAutocompleteChangeGve = async (event, newValue) => {
+        setIsChangeGve(true);
+        if (newValue) {
+            await setValueGve(newValue); // 2- تحديث الحالة عندما يتم تغيير قيمة Autocomplete.
+            await onChangeGvernorate(newValue);
+            await getCities(newValue?.id);
+        }
+    };
+
+    const handleAutocompleteChangeCity = async (event, newValue) => {
+        if (newValue) {
+            await setValueCity(newValue);
+            await onChangeCity(newValue);
+            await navigate(`/city/${newValue?.attributes?.name}`);
+        } else {
+            await onChangeCity(null);
+            await navigate(`/home`);
+        }
+    };
+
+    let resultCity;
+    if (!isChangeGve) {
+        resultCity = (
+            <Grid item xs={6} md={2}>
+                <Autocomplete
+                    id="cities"
+                    size="small"
+                    value={valueCity}
+                    open={openCity}
+                    onOpen={() => {
+                        if (gvernorate && Object.keys(gvernorate).length) {
+                            getCities(gvernorate?.id);
+                        }
+                        setOpenCity(true);
+                    }}
+                    onClose={() => {
+                        setOpenCity(false);
+                    }}
+                    isOptionEqualToValue={(option, value) => option.id === value.id}
+                    getOptionLabel={(option) => option.attributes?.name}
+                    options={cities}
+                    loading={LoadingCity}
+                    defaultValue={valueCity}
+                    noOptionsText={<Typography>ﻻ توجد مدن</Typography>}
+                    loadingText={<Typography>جاري تحميل المدن...</Typography>}
+                    onChange={handleAutocompleteChangeCity}
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            label="المدن"
+                            InputProps={{
+                                ...params.InputProps,
+                                endAdornment: (
+                                    <>
+                                        {LoadingCity ? <CircularProgress color="inherit" size={20} /> : null}
+                                        {params.InputProps.endAdornment}
+                                    </>
+                                )
+                            }}
+                        />
+                    )}
+                />
+            </Grid>
+        );
+    } else if (error) {
+        resultCity = <Typography>خطأ في تحميل المدن</Typography>;
+    } else {
+        resultCity = (
+            <Grid item xs={6} md={2}>
+                <Autocomplete
+                    size="small"
+                    options={[]}
+                    open={openCity}
+                    value={null}
+                    defaultValue={null}
+                    loading
+                    noOptionsText={<Typography>ﻻ توجد نتائج</Typography>}
+                    loadingText={<Typography>جاري تحميل المدن...</Typography>}
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            label="تحميل المدن"
+                            InputProps={{
+                                ...params.InputProps,
+                                endAdornment: (
+                                    <>
+                                        <CircularProgress color="inherit" size={20} />
+                                        {params.InputProps.endAdornment}
+                                    </>
+                                )
+                            }}
+                        />
+                    )}
+                />
+            </Grid>
+        );
+    }
+
+    let resultGve;
+    if (errorGve) {
+        resultGve = <Typography>خطأ في تحميل المحافظات</Typography>;
+    } else {
+        resultGve = (
+            <Grid item xs={6} md={2}>
+                <Autocomplete
+                    id="gvernorate"
+                    value={valueGve}
+                    defaultValue={valueGve}
+                    size="small"
+                    open={openGve}
+                    onOpen={() => {
+                        if (gvernorates && gvernorates.length === 0) {
+                            dispatch(getGvernorates());
+                        }
+                        setOpenGve(true);
+                    }}
+                    onClose={() => {
+                        setOpenGve(false);
+                    }}
+                    isOptionEqualToValue={(option, value) => option.id === value.id}
+                    getOptionLabel={(option) => option.attributes?.name}
+                    options={gvernorates}
+                    loading={loadingGve}
+                    noOptionsText={<Typography>ﻻ توجد نتائج</Typography>}
+                    loadingText={<Typography>جاري تحميل المحافظات...</Typography>}
+                    onChange={handleAutocompleteChangeGve}
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            label="المحافظة"
+                            InputProps={{
+                                ...params.InputProps,
+                                endAdornment: (
+                                    <>
+                                        {loadingGve ? <CircularProgress color="inherit" size={20} /> : null}
+                                        {params.InputProps.endAdornment}
+                                    </>
+                                )
+                            }}
+                        />
+                    )}
+                />
+            </Grid>
+        );
+    }
     return (
         <Paper
             sx={{
@@ -33,12 +201,9 @@ const City = () => {
             }}
             component="ul"
         >
-            <Grid item xs={6} md={2}>
-                {!error ? (
-                    <AutocompleteFilter cities={cities} loading={loading} onChangeCity={onChangeCity} defaultValue={defaultValue} />
-                ) : (
-                    <Typography>خطأ في تحميل المدن</Typography>
-                )}
+            <Grid container alignItems="center" spacing={2}>
+                {resultGve}
+                {resultCity}
             </Grid>
         </Paper>
     );

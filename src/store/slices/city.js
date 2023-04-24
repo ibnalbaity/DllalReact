@@ -91,7 +91,7 @@ export function getCityByID(ID) {
 
 export function filterCities(filterBy) {
     dispatch(slice.actions.hasLoading(true));
-    const url = `/api/cities?populate=*&${filterBy}`;
+    const url = `/api/cities?populate=*&${filterBy}&pagination[pageSize]=50`;
     return async () => {
         try {
             const response = await axios.get(url);

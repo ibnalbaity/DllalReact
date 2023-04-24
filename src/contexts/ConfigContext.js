@@ -19,6 +19,7 @@ const initialState = {
     onChangeBorderRadius: () => {},
     onChangeOutlinedField: () => {},
     onChangeCategory: () => {},
+    onChangeGvernorate: () => {},
     onChangeCity: () => {}
 };
 
@@ -38,6 +39,7 @@ function ConfigProvider({ children }) {
         locale: initialState.locale,
         rtlLayout: initialState.rtlLayout,
         category: initialState.category,
+        gvernorate: initialState.gvernorate,
         city: initialState.city
     });
 
@@ -118,6 +120,13 @@ function ConfigProvider({ children }) {
         });
     };
 
+    const onChangeGvernorate = (gvernorate) => {
+        setConfig({
+            ...config,
+            gvernorate
+        });
+    };
+
     const onChangeCity = (city) => {
         setConfig({
             ...config,
@@ -140,6 +149,7 @@ function ConfigProvider({ children }) {
                 onChangeBorderRadius,
                 onChangeOutlinedField,
                 onChangeCategory,
+                onChangeGvernorate,
                 onChangeCity
             }}
         >
