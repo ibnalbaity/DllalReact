@@ -134,7 +134,7 @@ export function updateDllal(
                                 alert: {
                                     color: 'success'
                                 },
-                                close: false
+                                close: true
                             })
                         );
                     } else {
@@ -170,7 +170,7 @@ export function updateDllal(
                     alert: {
                         color: 'error'
                     },
-                    close: false
+                    close: true
                 })
             );
         }

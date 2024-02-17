@@ -10,7 +10,6 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import PropTypes from 'prop-types';
 import { isString } from 'lodash';
 import { gridSpacing } from '../../../store/constant';
-import { BASE_URL } from '../../../config';
 import { useDispatch } from '../../../store';
 import ConfirmationDialogRaw from '../deleteDllal/ConfirmationDialog';
 import useAuth from '../../../hooks/useAuth';
@@ -127,7 +126,7 @@ const UploadImage = ({ id, touched, errors, setFieldValue, value, setOldImages, 
                                 <Grid key={id} item xs={4} sm={3} md={2} lg={1}>
                                     <CardMedia
                                         component="img"
-                                        image={`${BASE_URL}${attributes?.formats?.thumbnail?.url}`}
+                                        image={`${attributes?.formats?.thumbnail?.url}`}
                                         title={name}
                                         sx={{ height: '90px' }}
                                     />
@@ -151,7 +150,7 @@ const UploadImage = ({ id, touched, errors, setFieldValue, value, setOldImages, 
                                         <Grid key={key} item xs={4} sm={3} md={2} lg={1}>
                                             <CardMedia
                                                 component="img"
-                                                image={preview || `${BASE_URL}${attributes?.formats?.thumbnail?.url}`}
+                                                image={preview || `${attributes?.formats?.thumbnail?.url}`}
                                                 title={isString(avatarItem) ? avatarItem : name}
                                                 sx={{ height: '90px' }}
                                             />

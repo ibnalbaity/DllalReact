@@ -134,7 +134,7 @@ export function updateDllal(
                     alert: {
                         color: 'success'
                     },
-                    close: false
+                    close: true
                 })
             );
         } catch (error) {
@@ -150,7 +150,7 @@ export function updateDllal(
                     alert: {
                         color: 'error'
                     },
-                    close: false
+                    close: true
                 })
             );
         }

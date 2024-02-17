@@ -111,7 +111,7 @@ export const JWTProvider = ({ children }) => {
         const response = await axios.post('/api/auth/forgot-password', {
             email
         });
-        console.log(response);
+
         if (response.status === 2000) {
             dispatchMessage(
                 openSnackbar({
@@ -121,7 +121,7 @@ export const JWTProvider = ({ children }) => {
                     alert: {
                         color: 'success'
                     },
-                    close: false
+                    close: true
                 })
             );
         }
@@ -143,7 +143,7 @@ export const JWTProvider = ({ children }) => {
                     alert: {
                         color: 'success'
                     },
-                    close: false
+                    close: true
                 })
             );
         } else if (response === undefined) {
@@ -155,7 +155,7 @@ export const JWTProvider = ({ children }) => {
                     alert: {
                         color: 'error'
                     },
-                    close: false
+                    close: true
                 })
             );
         } else {
@@ -167,7 +167,7 @@ export const JWTProvider = ({ children }) => {
                     alert: {
                         color: 'error'
                     },
-                    close: false
+                    close: true
                 })
             );
         }

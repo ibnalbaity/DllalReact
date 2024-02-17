@@ -100,7 +100,7 @@ export function postVehicleBrands(title, desc, images, user, city, categories, s
                     alert: {
                         color: 'success'
                     },
-                    close: false
+                    close: true
                 })
             );
         } catch (error) {
@@ -115,7 +115,7 @@ export function postVehicleBrands(title, desc, images, user, city, categories, s
                     alert: {
                         color: 'error'
                     },
-                    close: false
+                    close: true
                 })
             );
         }

@@ -11,7 +11,6 @@ import { gridSpacing } from 'store/constant';
 
 import LinesEllipsis from 'react-lines-ellipsis';
 // assets
-import { BASE_URL } from '../../config';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import AccessTimeRoundedIcon from '@mui/icons-material/AccessTimeRounded';
@@ -49,7 +48,7 @@ const DllalCard = ({ id, attributes }) => {
                                         to={`/dllal/${id}`}
                                         sx={{ width: 120, height: 90 }}
                                         alt={title}
-                                        src={images?.data ? `${BASE_URL}${images?.data[0]?.attributes?.formats?.thumbnail?.url}` : avatar}
+                                        src={images?.data ? `${images?.data[0]?.attributes?.formats?.thumbnail?.url}` : avatar}
                                         variant="rounded"
                                     />
                                 </Grid>
@@ -120,7 +119,7 @@ const DllalCard = ({ id, attributes }) => {
                     component={Link}
                     to={`/dllal/${id}`}
                     sx={{ height: 140 }}
-                    image={images?.data ? `${BASE_URL}${images?.data[0]?.attributes?.formats?.thumbnail?.url}` : avatar}
+                    image={images?.data ? `${images?.data[0]?.attributes?.formats?.thumbnail?.url}` : avatar}
                     title={title}
                 />
                 <CardContent>

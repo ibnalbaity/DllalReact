@@ -52,7 +52,7 @@ const EditUser = ({ user }) => {
                     alert: {
                         color: 'info'
                     },
-                    close: false
+                    close: true
                 })
             );
             await dispatch(updateUser(values.userID, values.username, values.email));

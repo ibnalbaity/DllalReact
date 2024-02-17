@@ -106,7 +106,7 @@ const AuthDllalRegister = ({ ...others }) => {
                                     alert: {
                                         color: 'success'
                                     },
-                                    close: false
+                                    close: true
                                 })
                             );
 

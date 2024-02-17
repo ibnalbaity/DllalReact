@@ -100,7 +100,7 @@ export function postDouble(title, desc, images, user, city, categories, subCateg
                     alert: {
                         color: 'success'
                     },
-                    close: false
+                    close: true
                 })
             );
         } catch (error) {
@@ -115,7 +115,7 @@ export function postDouble(title, desc, images, user, city, categories, subCateg
                     alert: {
                         color: 'error'
                     },
-                    close: false
+                    close: true
                 })
             );
         }

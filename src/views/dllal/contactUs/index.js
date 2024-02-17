@@ -46,7 +46,7 @@ const ContactUs = ({ ...others }) => {
                                 alert: {
                                     color: 'success'
                                 },
-                                close: false
+                                close: true
                             })
                         );
                         setTimeout(() => {

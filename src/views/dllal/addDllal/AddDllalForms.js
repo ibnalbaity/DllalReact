@@ -115,7 +115,7 @@ const AddDllalForms = () => {
                     alert: {
                         color: 'info'
                     },
-                    close: false
+                    close: true
                 })
             );
             await dispatch(

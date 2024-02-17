@@ -10,7 +10,6 @@ import { gridSpacing } from 'store/constant';
 import { Gallery, Item } from 'react-photoswipe-gallery';
 
 // assets
-import { BASE_URL } from '../../../config';
 import MainCard from '../../../ui-component/cards/MainCard';
 import useConfig from '../../../hooks/useConfig';
 
@@ -29,8 +28,8 @@ const DllalDetailsImages = ({ images }) => {
                                 {images.map((image) => (
                                     <Grid key={image.id} item xs={6} sm={3} md={2}>
                                         <Item
-                                            original={`${BASE_URL}${image.attributes?.url}`}
-                                            thumbnail={`${BASE_URL}${image.attributes?.formats?.thumbnail?.url}`}
+                                            original={`${image.attributes?.url}`}
+                                            thumbnail={`${image.attributes?.formats?.thumbnail?.url}`}
                                             width={image.attributes.width}
                                             height={image.attributes.height}
                                         >
@@ -39,7 +38,7 @@ const DllalDetailsImages = ({ images }) => {
                                                     <MainCard content={false} sx={{ m: '0 auto' }}>
                                                         <CardMedia
                                                             component="img"
-                                                            image={`${BASE_URL}${image.attributes?.formats?.thumbnail?.url}`}
+                                                            image={`${image.attributes?.formats?.thumbnail?.url}`}
                                                             ref={ref}
                                                             onClick={open}
                                                             sx={{

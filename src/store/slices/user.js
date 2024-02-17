@@ -118,7 +118,7 @@ export function updateUser(userID, username, email) {
                             alert: {
                                 color: 'success'
                             },
-                            close: false
+                            close: true
                         })
                     );
                 })
@@ -132,7 +132,7 @@ export function updateUser(userID, username, email) {
                     alert: {
                         color: 'success'
                     },
-                    close: false
+                    close: true
                 })
             );
         } catch (error) {
@@ -148,7 +148,7 @@ export function updateUser(userID, username, email) {
                     alert: {
                         color: 'error'
                     },
-                    close: false
+                    close: true
                 })
             );
         }
@@ -171,7 +171,7 @@ export function removeUser(dllalID, imagesIDs) {
                     alert: {
                         color: 'error'
                     },
-                    close: false
+                    close: true
                 })
             );
         } catch (error) {
@@ -195,7 +195,7 @@ export function removeImage(imagesID) {
                     alert: {
                         color: 'error'
                     },
-                    close: false
+                    close: true
                 })
             );
         } catch (error) {

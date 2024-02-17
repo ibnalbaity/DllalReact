@@ -84,7 +84,7 @@ export function addDllal(title, desc, images, user, city, categories, subCategor
                     alert: {
                         color: 'success'
                     },
-                    close: false
+                    close: true
                 })
             );
         } catch (error) {
@@ -99,7 +99,7 @@ export function addDllal(title, desc, images, user, city, categories, subCategor
                     alert: {
                         color: 'error'
                     },
-                    close: false
+                    close: true
                 })
             );
         }

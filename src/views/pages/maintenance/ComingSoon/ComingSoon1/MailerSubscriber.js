@@ -44,7 +44,7 @@ const MailerSubscriber = ({ ...others }) => {
                             alert: {
                                 color: 'success'
                             },
-                            close: false
+                            close: true
                         })
                     );
 

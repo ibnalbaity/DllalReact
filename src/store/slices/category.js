@@ -86,7 +86,7 @@ export function postCategory(title, desc, images, user, city, categories, subCat
                     alert: {
                         color: 'success'
                     },
-                    close: false
+                    close: true
                 })
             );
         } catch (error) {
@@ -101,7 +101,7 @@ export function postCategory(title, desc, images, user, city, categories, subCat
                     alert: {
                         color: 'error'
                     },
-                    close: false
+                    close: true
                 })
             );
         }

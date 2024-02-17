@@ -85,7 +85,7 @@ export function postGvernorate(title, desc, images, user, city, categories, subC
                     alert: {
                         color: 'success'
                     },
-                    close: false
+                    close: true
                 })
             );
         } catch (error) {
@@ -100,7 +100,7 @@ export function postGvernorate(title, desc, images, user, city, categories, subC
                     alert: {
                         color: 'error'
                     },
-                    close: false
+                    close: true
                 })
             );
         }
